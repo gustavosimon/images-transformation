@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
  */
 /**
  *
- * @author Gustavo Simon
+ * @author Felipe Ramon Wozniak, Gustavo André Simon e Pedro Kassick Soares
  */
 public class Menu extends javax.swing.JFrame {
 
