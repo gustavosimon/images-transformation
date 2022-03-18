@@ -2,7 +2,7 @@ package pdi;
 
 /**
  * Trabalho de Processamento Digital de Imagens
- * @author  * @author Felipe Ramon Wozniak, Gustavo André Simon e Pedro Kassick Soares
+ * @author Felipe Ramon Wozniak, Gustavo André Simon e Pedro Kassick Soares
  */
 public class PDI {
 
