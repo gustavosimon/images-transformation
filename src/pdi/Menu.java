@@ -42,7 +42,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Menu");
 
-        jButton1.setText("Deslocada");
+        jButton1.setText("Translação");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -56,21 +56,21 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Espelhada");
+        jButton3.setText("Espelhamento");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Ampliada");
+        jButton4.setText("Ampliação");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Invertida");
+        jButton5.setText("Rotação");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -157,7 +157,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
-        JOptionPane.showMessageDialog(rootPane, "Componentes do grupo:\n\nFelipe Ramon Wozniak\nGustavo André Simon");
+        JOptionPane.showMessageDialog(rootPane, "Componentes do grupo:\n\nFelipe Ramon Wozniak\nGustavo André Simon\nPedro Kassick Soares");
     }//GEN-LAST:event_jButton6MouseClicked
 
     /**

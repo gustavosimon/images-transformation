@@ -77,7 +77,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Deslocada"/>
+        <Property name="text" type="java.lang.String" value="Transla&#xe7;&#xe3;o"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
@@ -93,7 +93,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Espelhada"/>
+        <Property name="text" type="java.lang.String" value="Espelhamento"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
@@ -101,7 +101,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Ampliada"/>
+        <Property name="text" type="java.lang.String" value="Amplia&#xe7;&#xe3;o"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
@@ -109,7 +109,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Invertida"/>
+        <Property name="text" type="java.lang.String" value="Rota&#xe7;&#xe3;o"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
