@@ -41,7 +41,13 @@ public class ImageUtils {
                 npx = aux * i;
                 npy = aux * j;
                 //acredito que precise de um for aqui para popular os pixels anteriores da matriz
-                processed.setRGB(npx, npy, imagePixels[i][j]);
+                if(npx > original.getWidth() || npy > original.getHeight()){
+                //pula caso a posição da matriz esteja fora do limite    
+                }else{
+                    processed.setRGB(npx, npy, imagePixels[i][j]);
+                }
+                
+                
             }
         }
     }
