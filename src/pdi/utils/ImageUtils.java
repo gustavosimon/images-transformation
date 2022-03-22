@@ -23,6 +23,31 @@ public class ImageUtils {
     private ImageUtils() {}
     
     /**
+     * Escala a imagem dobrando de tamanho
+     */
+    public static void writeScaleUpImage(){
+        Optional<Image> optOriginal = getImageFromFile();
+        if (optOriginal.isEmpty()) {
+            return;
+        }
+        Image original = optOriginal.get();
+        BufferedImage processed = new BufferedImage(original.getWidth(), original.getHeight(), TYPE_INT_RGB);
+        int[][] imagePixels = original.getMatrix();
+        int aux = 2;
+        int npx = 0;
+        int npy = 0;
+        for(int j=0;j< original.getHeight(); j++){
+            for (int i = 0; i < original.getWidth(); i++) {
+                npx = aux * i;
+                npy = aux * j;
+                //acredito que precise de um for aqui para popular os pixels anteriores da matriz
+                processed.setRGB(npx, npy, imagePixels[i][j]);
+            }
+        }
+    }
+    
+    
+    /**
      * Grava a imagem de forma espelhada horizontalmente.
      */
     public static void writeHorizontallyMirrorImage() {
