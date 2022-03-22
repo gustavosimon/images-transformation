@@ -23,9 +23,68 @@ public class ImageUtils {
     private ImageUtils() {}
     
     /**
-     * Escala a imagem dobrando de tamanho
+     * Grava a imagem rotacionada
+     */
+    public static void writeRotationImage(){
+        Optional<Image> optOriginal = getImageFromFile();
+        if (optOriginal.isEmpty()) {
+            return;
+        }
+        Image original = optOriginal.get();
+        BufferedImage processed = new BufferedImage(original.getHeight(), original.getWidth(), TYPE_INT_RGB);
+        int[][] imagePixels = original.getMatrix();
+        double ang = Math.toRadians(90);//angulo usado na rotação
+        int cos = (int)Math.cos(ang);
+        int sinN = (int)Math.sin(ang);
+        int sin = (int)Math.sin(ang);
+
+        for(int j=0;j< original.getHeight(); j++){
+            for (int i = 0; i < original.getWidth(); i++){
+                processed.setRGB(i * cos + j * sinN,i * sin + j * cos , imagePixels[i][j]);
+            }
+        }
+        writeImage(processed);
+    }
+    
+    /**
+     * Grava a imagem dobrando de tamanho
      */
     public static void writeScaleUpImage(){
+        int aux = 2; //controla a quanidade de vezes na escala
+        Optional<Image> optOriginal = getImageFromFile();
+        if (optOriginal.isEmpty()) {
+            return;
+        }
+        Image original = optOriginal.get();
+        BufferedImage processed = new BufferedImage(original.getWidth()*aux, original.getHeight()*aux, TYPE_INT_RGB);
+        int[][] imagePixels = original.getMatrix();
+        int npx = 0;
+        int npy = 0;
+        int apx = 0;
+        int apy = 0;
+        for(int j=0;j< original.getHeight(); j++){
+            for (int i = 0; i < original.getWidth(); i++) {
+                npx = aux * i;
+                npy = aux * j;
+                processed.setRGB(npx, npy, imagePixels[i][j]);
+                    //for para popular os pixels anteriores da matriz
+                    for(int a = npx; a >= apx; a--){
+                        for(int b = npy; b >= apy; b--){
+                            processed.setRGB(a, b, imagePixels[i][j]);
+                        }
+                    }      
+                apx = npx;
+                apy = npy;
+            }
+        }
+        writeImage(processed);
+    }
+    
+    /**
+     * Grava a imagem reduzindo o tamanho pela metade
+     */
+    public static void writeScaleDownImage(){
+       double aux = 0.5; //controla a quanidade de vezes na escala
         Optional<Image> optOriginal = getImageFromFile();
         if (optOriginal.isEmpty()) {
             return;
@@ -33,25 +92,21 @@ public class ImageUtils {
         Image original = optOriginal.get();
         BufferedImage processed = new BufferedImage(original.getWidth(), original.getHeight(), TYPE_INT_RGB);
         int[][] imagePixels = original.getMatrix();
-        int aux = 2;
-        int npx = 0;
-        int npy = 0;
+        double npx = 0;
+        double npy = 0;
+        double apx = 0;
+        double apy = 0;
         for(int j=0;j< original.getHeight(); j++){
             for (int i = 0; i < original.getWidth(); i++) {
                 npx = aux * i;
                 npy = aux * j;
-                //acredito que precise de um for aqui para popular os pixels anteriores da matriz
-                if(npx > original.getWidth() || npy > original.getHeight()){
-                //pula caso a posição da matriz esteja fora do limite    
-                }else{
-                    processed.setRGB(npx, npy, imagePixels[i][j]);
-                }
-                
-                
+                processed.setRGB((int)npx, (int)npy, imagePixels[i][j]);      
+                apx = npx;
+                apy = npy;
             }
         }
+        writeImage(processed); 
     }
-    
     
     /**
      * Grava a imagem de forma espelhada horizontalmente.
