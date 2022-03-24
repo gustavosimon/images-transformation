@@ -33,49 +33,62 @@ public class ImageUtils {
         Image original = optOriginal.get();
         BufferedImage processed = new BufferedImage(original.getHeight(), original.getWidth(), TYPE_INT_RGB);
         int[][] imagePixels = original.getMatrix();
-        double ang = Math.toRadians(90);//angulo usado na rotação
-        int cos = (int)Math.cos(ang);
-        int sinN = (int)Math.sin(ang);
-        int sin = (int)Math.sin(ang);
 
-        for(int j=0;j< original.getHeight(); j++){
-            for (int i = 0; i < original.getWidth(); i++){
-                processed.setRGB(i * cos + j * sinN,i * sin + j * cos , imagePixels[i][j]);
+        int aux;
+        for (int j = 0; j < original.getHeight(); j++) {
+            aux = original.getWidth() - 1;
+            for (int i = 0; i < original.getWidth(); i++) {
+                processed.setRGB(i, j, imagePixels[aux--][j]);
             }
         }
+
+
+        aux = 0;
+        for (int i = 0; i < original.getWidth(); i++) {
+            aux = original.getHeight() - 1;
+            for (int j = 0; j < original.getHeight(); j++) {
+                processed.setRGB(i, j, processed.getRGB(i, aux--));
+            }
+        }
+        
+        // double ang = Math.toRadians(180);//angulo usado na rotação
+        // int cos = (int) Math.cos(ang);
+        // int sinN = (int) Math.sin(ang);
+        // int sin = (int) Math.sin(ang);
+        // for(int j=0;j< original.getHeight(); j++){
+        //     for (int i = 0; i < original.getWidth(); i++){
+        //         processed.setRGB(i * cos + j * sinN,i * sin + j * cos , imagePixels[i][j]);
+        //     }
+        // }
+
         writeImage(processed);
     }
     
     /**
-     * Grava a imagem dobrando de tamanho
+     * Grava a imagem dobrando de tamanho.
      */
     public static void writeScaleUpImage(){
-        int aux = 2; //controla a quanidade de vezes na escala
         Optional<Image> optOriginal = getImageFromFile();
         if (optOriginal.isEmpty()) {
             return;
         }
         Image original = optOriginal.get();
-        BufferedImage processed = new BufferedImage(original.getWidth()*aux, original.getHeight()*aux, TYPE_INT_RGB);
+        BufferedImage processed = new BufferedImage(original.getWidth(), original.getHeight(), TYPE_INT_RGB);
         int[][] imagePixels = original.getMatrix();
-        int npx = 0;
-        int npy = 0;
-        int apx = 0;
-        int apy = 0;
-        for(int j=0;j< original.getHeight(); j++){
-            for (int i = 0; i < original.getWidth(); i++) {
-                npx = aux * i;
-                npy = aux * j;
-                processed.setRGB(npx, npy, imagePixels[i][j]);
-                    //for para popular os pixels anteriores da matriz
-                    for(int a = npx; a >= apx; a--){
-                        for(int b = npy; b >= apy; b--){
-                            processed.setRGB(a, b, imagePixels[i][j]);
-                        }
-                    }      
-                apx = npx;
-                apy = npy;
+        int newWidth = original.getWidth() / 4;
+        int newHeight = (original.getHeight()) / 4;
+        int a = 0;
+        int b = 0;
+        for (int i = newWidth; i < newWidth * 3; i++) {
+            for (int j = newHeight; j < newHeight * 3; j++) {
+                processed.setRGB(a, b, imagePixels[i][j]);
+                processed.setRGB(a+1, b, imagePixels[i][j]);
+                processed.setRGB(a, b+1, imagePixels[i][j]);
+                processed.setRGB(a+1, b+1, imagePixels[i][j]);
+                b=b+2;
             }
+            b=0;
+            a=a+2;
         }
         writeImage(processed);
     }
@@ -94,15 +107,11 @@ public class ImageUtils {
         int[][] imagePixels = original.getMatrix();
         double npx = 0;
         double npy = 0;
-        double apx = 0;
-        double apy = 0;
-        for(int j=0;j< original.getHeight(); j++){
+        for(int j=0; j< original.getHeight(); j++){
             for (int i = 0; i < original.getWidth(); i++) {
                 npx = aux * i;
                 npy = aux * j;
                 processed.setRGB((int)npx, (int)npy, imagePixels[i][j]);      
-                apx = npx;
-                apy = npy;
             }
         }
         writeImage(processed); 
