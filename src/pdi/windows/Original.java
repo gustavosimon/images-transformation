@@ -1,4 +1,4 @@
-package pdi;
+package pdi.windows;
 
 import javax.swing.ImageIcon;
 

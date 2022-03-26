@@ -10,7 +10,7 @@ import java.util.Optional;
 
 import javax.imageio.ImageIO;
 
-import pdi.Image;
+import pdi.image.Image;
 
 /**
  * Classe utilitária com operações para manipular imagens.
@@ -23,7 +23,7 @@ public class ImageUtils {
     private ImageUtils() {}
     
     /**
-     * Grava a imagem rotacionada
+     * Grava a imagem rotacionada.
      */
     public static void writeRotationImage(){
         Optional<Image> optOriginal = getImageFromFile();
@@ -31,36 +31,26 @@ public class ImageUtils {
             return;
         }
         Image original = optOriginal.get();
-        BufferedImage processed = new BufferedImage(original.getHeight(), original.getWidth(), TYPE_INT_RGB);
+        BufferedImage processed = new BufferedImage(original.getWidth(), original.getHeight(), TYPE_INT_RGB);
         int[][] imagePixels = original.getMatrix();
-
-        int aux;
+        int[][] imagePixelsCopy = new int[original.getWidth()][original.getHeight()];
         for (int j = 0; j < original.getHeight(); j++) {
-            aux = original.getWidth() - 1;
+            int aux = original.getWidth() - 1;
             for (int i = 0; i < original.getWidth(); i++) {
-                processed.setRGB(i, j, imagePixels[aux--][j]);
+                imagePixelsCopy[i][j] = imagePixels[aux--][j];
             }
         }
-
-
-        aux = 0;
         for (int i = 0; i < original.getWidth(); i++) {
-            aux = original.getHeight() - 1;
+            int aux = original.getHeight() - 1;
             for (int j = 0; j < original.getHeight(); j++) {
-                processed.setRGB(i, j, processed.getRGB(i, aux--));
+                imagePixels[i][j] = imagePixelsCopy[i][aux--];
             }
         }
-        
-        // double ang = Math.toRadians(180);//angulo usado na rotação
-        // int cos = (int) Math.cos(ang);
-        // int sinN = (int) Math.sin(ang);
-        // int sin = (int) Math.sin(ang);
-        // for(int j=0;j< original.getHeight(); j++){
-        //     for (int i = 0; i < original.getWidth(); i++){
-        //         processed.setRGB(i * cos + j * sinN,i * sin + j * cos , imagePixels[i][j]);
-        //     }
-        // }
-
+        for (int j = 0; j < original.getHeight(); j++) {
+            for (int i = 0; i < original.getWidth(); i++) {
+                processed.setRGB(i, j, imagePixels[i][j]);
+            }
+        }
         writeImage(processed);
     }
     
@@ -76,7 +66,7 @@ public class ImageUtils {
         BufferedImage processed = new BufferedImage(original.getWidth(), original.getHeight(), TYPE_INT_RGB);
         int[][] imagePixels = original.getMatrix();
         int newWidth = original.getWidth() / 4;
-        int newHeight = (original.getHeight()) / 4;
+        int newHeight = original.getHeight() / 4;
         int a = 0;
         int b = 0;
         for (int i = newWidth; i < newWidth * 3; i++) {
@@ -94,23 +84,23 @@ public class ImageUtils {
     }
     
     /**
-     * Grava a imagem reduzindo o tamanho pela metade
+     * Grava a imagem reduzindo o tamanho pela metade.
      */
     public static void writeScaleDownImage(){
-       double aux = 0.5; //controla a quanidade de vezes na escala
         Optional<Image> optOriginal = getImageFromFile();
         if (optOriginal.isEmpty()) {
             return;
         }
         Image original = optOriginal.get();
-        BufferedImage processed = new BufferedImage(original.getWidth(), original.getHeight(), TYPE_INT_RGB);
+        BufferedImage processed = new BufferedImage((int) Math.round(original.getWidth()  * SCALE_DOWN_FACTOR), 
+                                                    (int) Math.round(original.getHeight() * SCALE_DOWN_FACTOR), TYPE_INT_RGB);
         int[][] imagePixels = original.getMatrix();
         double npx = 0;
         double npy = 0;
-        for(int j=0; j< original.getHeight(); j++){
+        for(int j=0; j < original.getHeight(); j++){
             for (int i = 0; i < original.getWidth(); i++) {
-                npx = aux * i;
-                npy = aux * j;
+                npx = SCALE_DOWN_FACTOR * i;
+                npy = SCALE_DOWN_FACTOR * j;
                 processed.setRGB((int)npx, (int)npy, imagePixels[i][j]);      
             }
         }

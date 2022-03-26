@@ -11,5 +11,8 @@ public final class ImageConstants {
     public static final String PROCESSED_IMAGE_PATH = "src\\resources\\processed.png";
     /** Extensão da imagem processada */
     public static final String IMAGE_EXTENSION = "png";
+
+    /** Fator para diminuir o tamanho da imagem */
+    public static final double SCALE_DOWN_FACTOR = 0.5;
     
 }

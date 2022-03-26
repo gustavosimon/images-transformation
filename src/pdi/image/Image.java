@@ -1,4 +1,4 @@
-package pdi;
+package pdi.image;
 
 /**
  * Classe representando a imagem que deve ser processada.

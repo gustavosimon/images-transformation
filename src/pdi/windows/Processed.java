@@ -1,4 +1,4 @@
-package pdi;
+package pdi.windows;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -23,6 +23,7 @@ public class Processed extends javax.swing.JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
         try {
             jLabel1 = new JLabel(new ImageIcon(ImageIO.read(new File(PROCESSED_IMAGE_PATH))));
         } catch (Exception e) {

@@ -1,7 +1,10 @@
 package pdi;
 
+import pdi.windows.Menu;
+
 /**
- * Trabalho de Processamento Digital de Imagens
+ * Trabalho de Processamento Digital de Imagens - Transformações em imagens.
+ * 
  * @author Felipe Ramon Wozniak, Gustavo André Simon e Pedro Kassick Soares
  */
 public class PDI {
