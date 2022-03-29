@@ -27,7 +27,7 @@
 - [Java](https://www.java.com/en/)
 ---
 
-Made by [Felipe Ramon Wozniak!](https://www.linkedin.com/in/felipewozniak/)
-Made by [Gustavo Simon!](https://www.linkedin.com/in/gustavo-simon)
+Made by [Felipe Ramon Wozniak!](https://www.linkedin.com/in/felipewozniak/)<br>
+Made by [Gustavo Simon!](https://www.linkedin.com/in/gustavo-simon)<br>
 Made by [Pedro Kassick Soares!](https://www.linkedin.com/in/pedro-kassick-soares-52b159180/)
 
